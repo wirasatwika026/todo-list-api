@@ -43,7 +43,7 @@ public class SwaggerConfig {
                                 .url("http://localhost:8080")
                                 .description("Development Server"),
                         new Server()
-                                .url("https://api.todoapp.com")
+                                .url("https://todo-api.theawe.web.id")
                                 .description("Production Server")));
     }
 }

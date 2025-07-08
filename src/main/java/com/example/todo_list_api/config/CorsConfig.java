@@ -12,11 +12,40 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class CorsConfig {
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
+
+        // ✅ Specific allowed origins untuk reverse proxy
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+                "http://localhost:*", // Development
+                "https://localhost:*", // Development HTTPS
+                "https://*.theawe.web.id", // Production domain
+                "https://todo-api.theawe.web.id", // Specific API domain
+                "https://yourdomain.com", // Frontend domain (ganti dengan domain frontend Anda)
+                "https://*.yourdomain.com" // Frontend subdomains
+        ));
+
+        configuration.setAllowedMethods(Arrays.asList(
+                "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+
+        configuration.setAllowedHeaders(Arrays.asList(
+                "Authorization",
+                "Content-Type",
+                "X-Requested-With",
+                "Accept",
+                "Origin",
+                "Access-Control-Request-Method",
+                "Access-Control-Request-Headers",
+                // ✅ Headers dari reverse proxy
+                "X-Forwarded-For",
+                "X-Forwarded-Proto",
+                "X-Forwarded-Host",
+                "X-Real-IP"));
+
+        configuration.setExposedHeaders(Arrays.asList(
+                "Access-Control-Allow-Origin",
+                "Access-Control-Allow-Credentials"));
+
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
 
