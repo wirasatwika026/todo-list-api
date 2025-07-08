@@ -1,0 +1,54 @@
+# Dockerignore file for Spring Boot Todo List API
+
+# Build output
+target/
+*.jar
+*.war
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker files
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Documentation
+README.md
+docs/
+
+# Environment files
+.env*
+
+# Logs
+*.log
+logs/
+
+# Test files
+src/test/
+
+# Maven local repository
+.m2/
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# IDE specific
+.classpath
+.project
+.settings/
+bin/
