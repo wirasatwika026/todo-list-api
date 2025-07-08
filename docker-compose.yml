@@ -38,6 +38,8 @@ services:
       FLYWAY_ENABLED: ${FLYWAY_ENABLED:-true}
     # ports:
     #   - "${APP_PORT:-8080}:8080"
+    expose:
+      - "8080"
     networks:
       - todo-network
     healthcheck:
